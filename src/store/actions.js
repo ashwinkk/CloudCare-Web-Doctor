@@ -14,8 +14,8 @@ export default {
 		)
 			.then(response => response.text())
 			.then(data => {
-				context.commit("registerUser", userObject);
 				console.log(data);
+				context.commit("registerUser", userObject);
 			})
 			.catch(err => console.log(err));
 	},
@@ -23,7 +23,7 @@ export default {
 		var options = {
 			method: "POST",
 			headers: {
-				"Content-Type": "applicatin/json"
+				"Content-Type": "application/json"
 			},
 			body: JSON.stringify(data)
 		};
@@ -35,12 +35,13 @@ export default {
 			.then(response => response.text)
 			.then(data => console.log(data))
 			.catch(err => console.log(err));
+		context.commit("updateOtpStatus", "verifying");
 	},
 	verifyOtp(context, data) {
 		var options = {
 			method: "POST",
 			headers: {
-				"Content-Type": "applicatin/json"
+				"Content-Type": "application/json"
 			},
 			body: JSON.stringify(data)
 		};
@@ -48,8 +49,13 @@ export default {
 			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/verify",
 			options
 		)
-			.then(response => response.text)
-			.then(data => console.log(data))
+			.then(response => response.json())
+			.then(data => {
+				console.log(data);
+				var status = data.verified ? "success" : "failed";
+				console.log("status", status);
+				context.commit("updateOtpStatus", status);
+			})
 			.catch(err => console.log(err));
 	}
 };

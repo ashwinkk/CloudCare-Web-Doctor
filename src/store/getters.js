@@ -7,5 +7,8 @@ export default {
 	},
 	getPhoneNumber(state) {
 		return state.user.phoneNumber;
+	},
+	getVerificationStatus(state) {
+		return state.user.otp;
 	}
 };

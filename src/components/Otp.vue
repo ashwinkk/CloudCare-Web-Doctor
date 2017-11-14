@@ -3,13 +3,33 @@
         <div>
             <input type="text" placeholder="Enter OTP here" v-model="otpVal" />
         </div>
-        <div>
-            <button class="button success" @click="verifyOtp">Submit</button>
+        <div v-if="!loader">
+            <div>
+                <button class="button success" @click="verifyOtp">Submit</button>
+            </div>
+            <div>
+                <button class="button success" @click="requestOtp">Request Again</button>
+            </div>
+        </div>
+        <div v-else-if="otpStatus == 'verifying'">
+            Loading..
+        </div>
+        <div v-else-if="otpStatus == 'failed'">
+            Failed to verify OTP
+            <div>
+                <button class="button success" @click="requestOtp">Request Again</button>
+            </div>
         </div>
     </div>
 </template>
 <script>
     export default {
+        watch: {
+            otpStatus: function(otpStatus){
+                if(otpStatus == "success")
+                    this.$router.push('dashboard/my-appointments');
+            }
+        },
         computed: {
             otpStatus: function(){
                 return this.$store.getters.getVerificationStatus;
@@ -23,15 +43,12 @@
         },
         data(){
             return {
-                otpVal: ""
+                otpVal: "",
+                loader: false
             }
         },
         beforeMount(){
-            var data = {
-                googleid: this.googleid,
-                mobilenumber: "9746919337"
-            };
-            this.$store.dispatch("prepareOtpVerification", data);
+            this.requestOtp();
         },
         methods: {
             verifyOtp(){
@@ -39,7 +56,15 @@
                     otpno: this.otpVal,
                     googleid: this.googleid
                 };
+                this.loader = true;
                 this.$store.dispatch("verifyOtp",data);
+            },
+            requestOtp(){
+                var data = {
+                    googleid: this.googleid,
+                    mobilenumber: this.phoneNumber
+                };
+                this.$store.dispatch("prepareOtpVerification", data);
             }
         }
     }

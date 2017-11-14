@@ -15,7 +15,9 @@ const store = new Vuex.Store({
 			photoUrl: localStorage.getItem("user-dp"),
 			email: localStorage.getItem("user-email"),
 			googleid: localStorage.getItem("user-googleid"),
-			registerComplete: false
+			registerComplete: false,
+			phoneNumber: "",
+			otp: "unverified"
 		}
 	},
 	getters,

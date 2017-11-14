@@ -7,7 +7,11 @@ export default {
 		user.phoneNumber = userObject.phoneNumber;
 		user.googleid = userObject.googleid;
 		user.loggedIn = true;
+		user.otp = "unverified";
 		state.user = user;
 		state.user.registerComplete = true;
+	},
+	updateOtpStatus(state, status) {
+		state.user.otp = status;
 	}
 };
