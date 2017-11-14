@@ -17,6 +17,9 @@
         <div v-else-if="otpStatus == 'failed'">
             Failed to verify OTP
             <div>
+                <button class="button success" @click="verifyOtp">Submit</button>
+            </div>
+            <div>
                 <button class="button success" @click="requestOtp">Request Again</button>
             </div>
         </div>
