@@ -7,9 +7,9 @@
             <div>
                 <h2>Doctors</h2>
                 <div class="grid-x">
-                    <div class="small-4 cell" v-for="doctor in choosableDoctors" v-on:click="selectDoctor(doctor)">
+                    <div class="small-4 cell" v-for="doctor in doctors" v-on:click="selectDoctor(doctor)">
                         <h3>{{doctor.name}}</h3>
-                        <p>{{doctor.dept}}</p>
+                        <p>{{doctor.department}}</p>
                     </div>
                 </div>
             </div>
@@ -17,14 +17,29 @@
                 <label for="select-date">Select Date</label>
                 <select id="select-date" v-model="selectedData.date">
                     <option disabled>-Select Date-</option>
-                    <option v-for="date in choosableDates" v-bind:value="date">{{date.day}}, {{date.date}} {{date.month}}</option>
+                    <option 
+                        v-for="date in choosableDates" 
+                        v-bind:value="`${date.date}${date.monthIndex}${date.year}`"
+                        >
+                        {{date.day}}, {{date.date}} {{date.month}}
+                    </option>
                 </select>
             </div>
         </div>
         <div>
             <div>
-                <button class="button" @click="()=>{confirmBooking();showCredentialInputs=false;}">Book for self</button>
-                <button class="button" @click="showCredentialInputs = true">Book for someone</button>
+                <button 
+                    class="button" 
+                    @click="()=>{ confirmBooking();showCredentialInputs=false; }"
+                    >
+                    Book for self
+                </button>
+                <button 
+                    class="button" 
+                    @click="showCredentialInputs = true"
+                    >
+                    Book for someone
+                </button>
             </div>
             <div v-if="showCredentialInputs">
                 <div>
@@ -45,9 +60,13 @@
 </template>
 <script>
     export default {
-        created(){
-            this.setDates();
-            this.choosableDoctors = this.doctors;
+        computed: {
+            doctors: function(){
+                return this.$store.getters.getDoctorSchedule;
+            },
+            selectedData: function(){
+                return this.$store.getters.getBookedData;
+            }
         },
         data(){
             return {
@@ -56,28 +75,15 @@
                 choosableDates: [],
                 choosableDoctors: [],
                 steps: 0,
-                days: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-                months: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
-                selectedData: {
-                    date: {},
-                    doctor: {},
-                    credentials: {}
-                },
-                doctors: [
-                    {
-                        doctorid: 1,
-                        name: "Greg House",
-                        dept: "Diagnostician",
-                        days: ["Monday","Wednesday"]
-                    },
-                    {
-                        doctorid: 2,
-                        name: "Wilson",
-                        dept: "Oncologist",
-                        days: ["Monday","Thursday"]
-                    }
-                ]
+                days: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                months: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
             }
+        },
+        created(){
+            this.setDates();
+        },
+        beforeMount(){
+            this.$store.dispatch("fetchDoctorSchedule");
         },
         methods: {
             setDates(){
@@ -88,21 +94,26 @@
                     this.allDates.push({
                         date: date.getDate(),
                         month: this.months[date.getMonth()],
-                        day: this.days[date.getDay()]
+                        day: this.days[date.getDay()],
+                        year: date.getFullYear(),
+                        monthIndex: date.getMonth()
                     });
                 }
             },
             selectDoctor(clickedDoctor){
-                this.selectedData.doctor = clickedDoctor;
+                this.selectedData.doctorid = clickedDoctor.doctorid;
+                this.selectedData.doctorName = clickedDoctor.name;
                 console.log(this.selectedData);
                 this.choosableDates = this.allDates.filter((date)=>{
-                    if(this.selectedData.doctor.days.includes(date.day))
+                    if(clickedDoctor.available.find((availableDate)=>availableDate.days==date.day))
                         return true;
                     return false;
                 })
             },
             confirmBooking(){
                 console.log("confirming booking");
+                this.$store.dispatch("confirmBooking", this.selectedData);
+                this.$router.push("/dashboard/booking-status");
             }
         }
     }

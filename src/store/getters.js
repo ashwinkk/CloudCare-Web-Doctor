@@ -13,5 +13,11 @@ export default {
 	},
 	getDoctorSchedule(state) {
 		return state.doctor.schedule;
+	},
+	getBookedData(state) {
+		return state.booking;
+	},
+	getBookingStatus(state) {
+		return state.booking.bookingStatus;
 	}
 };

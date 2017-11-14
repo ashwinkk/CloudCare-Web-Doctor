@@ -17,5 +17,12 @@ export default {
 	updateDoctorSchedule(state, data) {
 		console.log(data);
 		state.doctor.schedule = data;
+	},
+	setBookingStatus(state, data) {
+		console.log(data);
+		if (data.tokenno == undefined) {
+			state.booking.bookingStatus = "success";
+			state.booking.tokenno = data.tokenno;
+		} else state.booking.bookingStatus = "failed";
 	}
 };

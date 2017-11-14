@@ -21,6 +21,14 @@ const store = new Vuex.Store({
 		},
 		doctor: {
 			schedule: []
+		},
+		booking: {
+			doctorid: "",
+			date: "",
+			googleid: "",
+			doctorName: "",
+			bookingStatus: "notbooked",
+			tokenno: ""
 		}
 	},
 	getters,

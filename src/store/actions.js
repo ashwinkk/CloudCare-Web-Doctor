@@ -67,5 +67,23 @@ export default {
 				console.log(data);
 				context.commit("updateDoctorSchedule", data);
 			});
+	},
+	confirmBooking(context, data) {
+		var options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		};
+		fetch(
+			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/booking",
+			options
+		)
+			.then(response => response.json())
+			.then(data => {
+				context.commit("setBookingStatus", data);
+			})
+			.catch(err => console.log(err));
 	}
 };
