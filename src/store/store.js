@@ -18,6 +18,9 @@ const store = new Vuex.Store({
 			registerComplete: false,
 			phoneNumber: "",
 			otp: "unverified"
+		},
+		doctor: {
+			schedule: []
 		}
 	},
 	getters,

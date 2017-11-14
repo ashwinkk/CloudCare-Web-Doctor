@@ -57,5 +57,15 @@ export default {
 				context.commit("updateOtpStatus", status);
 			})
 			.catch(err => console.log(err));
+	},
+	fetchDoctorSchedule(context) {
+		fetch(
+			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/doctorDetails"
+		)
+			.then(response => response.json())
+			.then(data => {
+				console.log(data);
+				context.commit("updateDoctorSchedule", data);
+			});
 	}
 };

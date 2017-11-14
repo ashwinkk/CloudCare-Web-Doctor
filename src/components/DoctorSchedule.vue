@@ -1,12 +1,13 @@
 <template>
     <div>
         <h1>Schedule</h1>
-        <div>
+        <div v-if="!loader">
             <div v-for="data in schedule">
                 <div>
                     <h2>{{data.name}}</h2>
+                    <p>{{data.department}}</p>
                     <div>
-                        <span v-for="day in data.days">{{day}}</span>
+                        <span v-for="day in data.available">{{day.days}}: {{day.time}}</span>
                     </div>
                     <button class="button" @click="bookAppointment(data)">Book An Appointment</button>
                 </div>
@@ -17,19 +18,18 @@
 <script>
     export default {
         name: "doctor-schedule",
+        computed: {
+            schedule: function(){
+                return this.$store.getters.getDoctorSchedule;
+            }
+        },
         data(){
             return {
-                schedule: [
-                    {
-                        name: "Dr House",
-                        days: ["Monday","Tuesday","Wednesday"]
-                    },
-                    {
-                        name: "Dr Wilson",
-                        days: ["Tuesday", "Wednesday"]
-                    }
-                ]
+                loader: false
             }
+        },
+        beforeMount(){
+            this.$store.dispatch("fetchDoctorSchedule");
         },
         methods: {
             bookAppointment(doctor){

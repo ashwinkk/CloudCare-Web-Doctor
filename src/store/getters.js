@@ -10,5 +10,8 @@ export default {
 	},
 	getVerificationStatus(state) {
 		return state.user.otp;
+	},
+	getDoctorSchedule(state) {
+		return state.doctor.schedule;
 	}
 };

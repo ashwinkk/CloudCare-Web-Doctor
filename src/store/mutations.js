@@ -13,5 +13,9 @@ export default {
 	},
 	updateOtpStatus(state, status) {
 		state.user.otp = status;
+	},
+	updateDoctorSchedule(state, data) {
+		console.log(data);
+		state.doctor.schedule = data;
 	}
 };
