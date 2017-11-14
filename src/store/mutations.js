@@ -20,7 +20,7 @@ export default {
 	},
 	setBookingStatus(state, data) {
 		console.log(data);
-		if (data.tokenno == undefined) {
+		if (data.tokenno != undefined) {
 			state.booking.bookingStatus = "success";
 			state.booking.tokenno = data.tokenno;
 		} else state.booking.bookingStatus = "failed";

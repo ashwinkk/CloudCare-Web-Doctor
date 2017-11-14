@@ -11,6 +11,9 @@ export default {
 	getVerificationStatus(state) {
 		return state.user.otp;
 	},
+	isDoctorListEmpty(state) {
+		state.doctor.schedule.length == 0;
+	},
 	getDoctorSchedule(state) {
 		return state.doctor.schedule;
 	},

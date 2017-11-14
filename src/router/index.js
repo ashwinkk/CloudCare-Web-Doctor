@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+
 import HelloWorld from "@/components/HelloWorld";
 import SignIn from "@/components/SignIn";
 import SignUp from "@/components/SignUp";
@@ -9,6 +10,7 @@ import MyAppointments from "@/components/MyAppointments";
 import BookAppointment from "@/components/BookAppointment";
 import DoctorSchedule from "@/components/DoctorSchedule";
 import PreviousAppointment from "@/components/PreviousAppointment";
+import BookingStatus from "@/components/BookingStatus";
 
 Vue.use(Router);
 
@@ -58,6 +60,11 @@ export default new Router({
 					path: "book-appointment",
 					name: "BookAppointment",
 					component: BookAppointment
+				},
+				{
+					path: "booking-status",
+					name: "BookingStatus",
+					component: BookingStatus
 				}
 			]
 		}

@@ -29,7 +29,8 @@
             }
         },
         beforeMount(){
-            this.$store.dispatch("fetchDoctorSchedule");
+            if(this.$store.getters.isDoctorListEmpty)
+                this.$store.dispatch("fetchDoctorSchedule");
         },
         methods: {
             bookAppointment(doctor){

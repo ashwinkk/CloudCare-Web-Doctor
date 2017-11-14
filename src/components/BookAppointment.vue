@@ -73,8 +73,6 @@
                 allDates: [],
                 showCredentialInputs: false,
                 choosableDates: [],
-                choosableDoctors: [],
-                steps: 0,
                 days: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
                 months: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
             }
@@ -83,7 +81,8 @@
             this.setDates();
         },
         beforeMount(){
-            this.$store.dispatch("fetchDoctorSchedule");
+            if(this.$store.isDoctorListEmpty)
+                this.$store.dispatch("fetchDoctorSchedule");
         },
         methods: {
             setDates(){
@@ -112,7 +111,9 @@
             },
             confirmBooking(){
                 console.log("confirming booking");
-                this.$store.dispatch("confirmBooking", this.selectedData);
+                var bookingData = Object.assign(this.selectedData);
+                bookingData.googleid = this.$store.getters.getGoogleId;
+                this.$store.dispatch("confirmBooking", bookingData);
                 this.$router.push("/dashboard/booking-status");
             }
         }

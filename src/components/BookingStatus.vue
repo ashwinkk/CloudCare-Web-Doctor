@@ -5,9 +5,11 @@
             <p>Booking Successful</p>
             <p>Your token no: {{this.bookingData.tokenno}}</p>
             <p>Doctor: {{this.bookingData.doctorName}}</p>
+            <router-link to="/dashboard/my-appointments">Home</router-link>
         </div>
         <div v-else-if="bookingStatus == 'failed'">
             Booking Failed
+            <router-link to="/dashboard/my-appointments">Home</router-link>
         </div>
     </div>
 </template>
@@ -20,10 +22,6 @@
             },
             bookingData: function(){
                 return this.$store.getters.getBookedData;
-            }
-        },
-        data(){
-            return {
             }
         }
     }
