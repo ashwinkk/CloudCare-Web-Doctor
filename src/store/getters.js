@@ -22,5 +22,8 @@ export default {
 	},
 	getBookingStatus(state) {
 		return state.booking.bookingStatus;
+	},
+	getCurrentAppointmentList(state) {
+		return state.currentAppointments;
 	}
 };

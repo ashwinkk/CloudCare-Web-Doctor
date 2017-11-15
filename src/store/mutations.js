@@ -24,5 +24,9 @@ export default {
 			state.booking.bookingStatus = "success";
 			state.booking.tokenno = data.tokenno;
 		} else state.booking.bookingStatus = "failed";
+	},
+	updateCurrentAppointmentList(state, data) {
+		console.log(data);
+		state.currentAppointments = data;
 	}
 };

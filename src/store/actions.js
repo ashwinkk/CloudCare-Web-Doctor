@@ -85,5 +85,23 @@ export default {
 				context.commit("setBookingStatus", data);
 			})
 			.catch(err => console.log(err));
+	},
+	fetchMyAppointments(context, data) {
+		var options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		};
+		fetch(
+			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/currentAppointements",
+			options
+		)
+			.then(response => response.json())
+			.then(data => {
+				context.commit("updateCurrentAppointmentList", data);
+			})
+			.catch(err => console.log(err));
 	}
 };
