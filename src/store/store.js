@@ -30,7 +30,8 @@ const store = new Vuex.Store({
 			bookingStatus: "notbooked",
 			tokenno: ""
 		},
-		currentAppointments: []
+		currentAppointments: [],
+		previousAppointments: []
 	},
 	getters,
 	mutations,

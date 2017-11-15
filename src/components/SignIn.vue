@@ -29,9 +29,11 @@
         watch:{
             actionCompleted: function(comepletedFetch){
                 if(comepletedFetch && this.registered)
-                    this.navigate('dashboard');
-                else if(comepletedFetch && !this.registered)
+                    this.navigate('dashboard/my-appointments');
+                else if(comepletedFetch && !this.registered){
+                    this.setStorage(googleUser);
                     this.navigate('signup');
+                }
             }
         },
         components: {

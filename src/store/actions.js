@@ -103,5 +103,23 @@ export default {
 				context.commit("updateCurrentAppointmentList", data);
 			})
 			.catch(err => console.log(err));
+	},
+	fetchPreviousAppointments(context, data) {
+		var options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		};
+		fetch(
+			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/previousAppointements",
+			options
+		)
+			.then(response => response.json())
+			.then(data => {
+				context.commit("updatePreviousAppointments", data);
+			})
+			.catch(err => console.log(err));
 	}
 };

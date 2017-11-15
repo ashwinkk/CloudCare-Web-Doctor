@@ -2,13 +2,13 @@
     <div>
         <div v-if="bookingStatus == 'booking'">Confirming Your Booking. Please Wait</div>
         <div v-else-if="bookingStatus == 'success'">
-            <p>Booking Successful</p>
-            <p>Your token no: {{this.bookingData.tokenno}}</p>
-            <p>Doctor: {{this.bookingData.doctorName}}</p>
+            <h1>Booking Successful</h1>
+            <h3>Your token no: {{this.bookingData.tokenno}}</h3>
+            <p class="doctor-name">Doctor: {{this.bookingData.doctorName}}</p>
             <router-link to="/dashboard/my-appointments">Home</router-link>
         </div>
         <div v-else-if="bookingStatus == 'failed'">
-            Booking Failed
+            <h2>Booking Failed</h2>
             <router-link to="/dashboard/my-appointments">Home</router-link>
         </div>
     </div>
@@ -26,3 +26,8 @@
         }
     }
 </script>
+<style>
+    .doctor-name{
+        font-size: 20px;
+    }
+</style>

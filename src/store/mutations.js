@@ -28,5 +28,12 @@ export default {
 	updateCurrentAppointmentList(state, data) {
 		console.log(data);
 		state.currentAppointments = data;
+	},
+	setDoctorId(state, doctorid) {
+		console.log(doctorid);
+		state.booking.doctorid = doctorid;
+	},
+	updatePreviousAppointments(state, data) {
+		console.log(data);
 	}
 };

@@ -12,7 +12,7 @@ export default {
 		return state.user.otp;
 	},
 	isDoctorListEmpty(state) {
-		state.doctor.schedule.length == 0;
+		return state.doctor.schedule.length == 0;
 	},
 	getDoctorSchedule(state) {
 		return state.doctor.schedule;
@@ -25,5 +25,8 @@ export default {
 	},
 	getCurrentAppointmentList(state) {
 		return state.currentAppointments;
+	},
+	getPreviousAppointments(state) {
+		return state.previousAppointments;
 	}
 };

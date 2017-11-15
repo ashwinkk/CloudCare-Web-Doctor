@@ -4,26 +4,31 @@
             <h1>Book Appointment</h1>
         </div>
         <div>
-            <div>
-                <h2>Doctors</h2>
+            <div class="doctor-select-container">
+                <h2>Select Doctor</h2>
                 <div class="grid-x">
-                    <div class="small-4 cell" v-for="doctor in doctors" v-on:click="selectDoctor(doctor)">
+                    <div 
+                        class="small-4 cell doctor-style" 
+                        :class="{'active-doctor': doctor.doctorid == selectedData.doctorid}"
+                        v-for="doctor in doctors" 
+                        v-on:click="selectDoctor(doctor)"
+                    >
                         <h3>{{doctor.name}}</h3>
                         <p>{{doctor.department}}</p>
                     </div>
                 </div>
             </div>
-            <div>
-                <label for="select-date">Select Date</label>
-                <select id="select-date" v-model="selectedData.date">
-                    <option disabled>-Select Date-</option>
-                    <option 
-                        v-for="date in choosableDates" 
-                        v-bind:value="`${date.date}${date.monthIndex}${date.year}`"
-                        >
-                        {{date.day}}, {{date.date}} {{date.month}}
-                    </option>
-                </select>
+            <div class="grid-x date-container">
+                    <label for="select-date">Select Date</label>
+                    <select class="small-4 medium-3 large-3 cell select-date" id="select-date" v-model="selectedData.date">
+                        <option disabled>-Select Date-</option>
+                        <option 
+                            v-for="date in choosableDates" 
+                            v-bind:value="`${date.date}${date.monthIndex}${date.year}`"
+                            >
+                            {{date.day}}, {{date.date}} {{date.month}}
+                        </option>
+                    </select>
             </div>
         </div>
         <div>
@@ -81,8 +86,15 @@
             this.setDates();
         },
         beforeMount(){
-            if(this.$store.isDoctorListEmpty)
+            if(this.$store.getters.isDoctorListEmpty)
                 this.$store.dispatch("fetchDoctorSchedule");
+            else if(this.selectedData.doctorid!=""){
+                var doctor = this.doctors.find((element)=>{
+                    return element.doctorid == this.selectedData.doctorid;
+                });
+                this.selectDoctor(doctor);
+            }
+
         },
         methods: {
             setDates(){
@@ -119,3 +131,32 @@
         }
     }
 </script>
+
+<style>
+    button.button{
+        border-radius: 2px;
+    }
+    div.active-doctor{
+        border: 2px solid #b9b9e7;
+        background: #c0d3e9;
+    }
+    .doctor-style{
+        cursor: pointer;
+        border-radius: 3px;
+        padding: 10px;
+        border: 2px solid transparent;
+    }
+    .doctor-style:hover{
+        border: 2px solid #b9b9e7;
+    }
+    .date-container{
+        text-align: center;
+        display: block;
+    }
+    .doctor-select-container{
+        padding: 15px;
+    }
+    .select-date{
+        border-radius: 3px;
+    }
+</style>
