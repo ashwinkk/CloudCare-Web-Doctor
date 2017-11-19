@@ -18,6 +18,11 @@ export default {
 		console.log(data);
 		state.doctor.schedule = data;
 	},
+	setBookingParameters(state, data) {
+		state.booking.doctor = data.doctor;
+		state.booking.date = data.date;
+		state.booking.department = data.department;
+	},
 	setBookingStatus(state, data) {
 		console.log(data);
 		if (data.tokenno != undefined) {

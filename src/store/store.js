@@ -27,6 +27,7 @@ const store = new Vuex.Store({
 			googleid: "",
 			bookingStatus: "notbooked",
 			tokenno: "",
+			department: "",
 			doctor: {}
 		},
 		currentAppointments: [],

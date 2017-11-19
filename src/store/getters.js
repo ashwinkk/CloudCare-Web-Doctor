@@ -31,6 +31,12 @@ export default {
 		return state.doctor.schedule.map(doctor => doctor.department);
 	},
 	//booking information getters
+	getBookingDate(state) {
+		return state.booking.date;
+	},
+	getBookingDepartment(state) {
+		return state.booking.department;
+	},
 	getBookedData(state) {
 		return state.booking;
 	},

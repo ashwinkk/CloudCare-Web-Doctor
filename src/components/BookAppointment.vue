@@ -59,10 +59,18 @@
                 return this.$store.getters.getDepartments;
             },
             selectedDateObject: function(){
-                return new Date(this.selectedDateString);
+                if(this.selectedDateString.length>0)
+                    return new Date(this.selectedDateString);
+                return null;
+            },
+            selectedDateString: function(){
+                return this.$store.getters.getBookingDate;
+            },
+            departmentFilter: function(){
+                return this.$store.getters.getBookingDepartment;
             },
             choosableDoctors: function(){
-                if(this.selectedDateString.length>0)
+                if(this.selectedDateString.length>0 && this.selectedDateObject!=null)
                     return this.doctors.filter(doctor=>{
                         if(doctor.available.find(date => date.days == this.days[this.selectedDateObject.getDay()]) && doctor.department == this.departmentFilter)
                             return true;
@@ -89,10 +97,8 @@
                 showCredentialInputs: false,
                 choosableDates: [],
                 selectedDoctor: [],
-                departmentFilter: "",
                 today: "",
                 lastDate: "",
-                selectedDateString: "",
                 days: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
                 months: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
             }
@@ -101,7 +107,7 @@
             this.setDates();
         },
         beforeMount(){
-            this.$store.commit('clearBookingData');
+            // this.$store.commit('clearBookingData');
             if(this.$store.getters.isDoctorListEmpty)
                 this.$store.dispatch("fetchDoctorSchedule");
         },
@@ -115,7 +121,7 @@
             },
             confirmBooking(){
                 console.log("confirming booking");
-                const bookingDate = `${this.selectedDateObject.getDate()}/${this.selectedDateObject.getMonth()+1}/${this.selectedDateObject.getFullYear()}`;
+                const bookingDate = `${this.selectedDateObject.getDate()}/${this.selectedDateObject.getMonth()}/${this.selectedDateObject.getFullYear()}`;
                 var bookingData = {
                     googleid: this.$store.getters.getGoogleId,
                     doctorName: this.selectedData.doctor.name,
