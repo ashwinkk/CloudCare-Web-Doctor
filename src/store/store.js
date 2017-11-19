@@ -23,12 +23,11 @@ const store = new Vuex.Store({
 			schedule: []
 		},
 		booking: {
-			doctorid: "",
 			date: "",
 			googleid: "",
-			doctorName: "",
 			bookingStatus: "notbooked",
-			tokenno: ""
+			tokenno: "",
+			doctor: {}
 		},
 		currentAppointments: [],
 		previousAppointments: []

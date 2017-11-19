@@ -25,6 +25,15 @@ export default {
 			state.booking.tokenno = data.tokenno;
 		} else state.booking.bookingStatus = "failed";
 	},
+	clearBookingData(state) {
+		state.booking = {
+			date: "",
+			googleid: "",
+			bookingStatus: "notbooked",
+			tokenno: "",
+			doctor: {}
+		};
+	},
 	updateCurrentAppointmentList(state, data) {
 		console.log(data);
 		state.currentAppointments = data;
@@ -35,5 +44,6 @@ export default {
 	},
 	updatePreviousAppointments(state, data) {
 		console.log(data);
+		state.previousAppointments = data;
 	}
 };
