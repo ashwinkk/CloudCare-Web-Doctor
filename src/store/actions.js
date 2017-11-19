@@ -59,6 +59,7 @@ export default {
 			});
 	},
 	confirmBooking(context, data) {
+		context.commit("setBookingProgress");
 		var options = {
 			method: "POST",
 			headers: {
@@ -100,6 +101,24 @@ export default {
 			.then(response => response.json())
 			.then(data => {
 				context.commit("updatePreviousAppointments", data);
+			})
+			.catch(err => console.log(err));
+	},
+	cancelAppointment(context, data) {
+		context.commit("setCancellingStatus");
+		console.log(data);
+		var options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		};
+		fetch(`${host}/api/delete`, options)
+			.then(response => response.text())
+			.then(data => {
+				console.log(data);
+				context.commit("setCancelStatus", true);
 			})
 			.catch(err => console.log(err));
 	}

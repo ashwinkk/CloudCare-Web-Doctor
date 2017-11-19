@@ -41,7 +41,7 @@
         },
     }
 </script>
-<style>
+<style scoped>
     .menu-container{
         width: 100%;
         height: 100%;
@@ -57,16 +57,16 @@
         outline: 0;
     }
     .menu-container>ul>li:hover{
-        background: #303F9F;
+        background: #271e3e;
     }
     .menu-container a{
         padding: 20px 30px;
         width: 100%;
         outline: 0;
         display:block;
-        font-size: 20px;
+        font-size: 15px;
         font-family: 'Muli', sans-serif;
-        color: white;
+        color: #eaeaea;
         text-decoration: none;
     }
     .menu-header{
@@ -88,6 +88,8 @@
         width: 100%;
     }
     .active-menu{
-        background: #311B92;
+        background: #2e2a42;
+        font-weight: bold;
+        color: white;
     }
 </style>

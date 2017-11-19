@@ -63,18 +63,28 @@
                     return new Date(this.selectedDateString);
                 return null;
             },
-            selectedDateString: function(){
-                return this.$store.getters.getBookingDate;
+            selectedDateString:{
+                get(){
+                    return this.$store.getters.getBookingDate;
+                },
+                set(newDate){   
+                    this.$store.commit('setBookingDate', newDate);
+                }
             },
-            departmentFilter: function(){
-                return this.$store.getters.getBookingDepartment;
+            departmentFilter: {
+                get(){
+                    return this.$store.getters.getBookingDepartment;
+                },
+                set(newDept){
+                    this.$store.commit('setDepartment', newDept);
+                }
             },
             choosableDoctors: function(){
                 if(this.selectedDateString.length>0 && this.selectedDateObject!=null)
                     return this.doctors.filter(doctor=>{
                         if(doctor.available.find(date => date.days == this.days[this.selectedDateObject.getDay()]) && doctor.department == this.departmentFilter)
                             return true;
-                        this.$store.commit('clearBookingData');
+                        // this.$store.commit('clearBookingData');
                         return false;
                     })
                 return [];
@@ -137,7 +147,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     button.button{
         border-radius: 2px;
     }
@@ -175,6 +185,9 @@
     }
     .doctor-select-area{
         margin-top: 40px;
+    }
+    .doctorselector{
+        margin-bottom: 20px;
     }
     input, select{
         margin: 0 !important;

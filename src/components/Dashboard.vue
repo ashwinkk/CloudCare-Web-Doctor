@@ -41,6 +41,7 @@
             padding-top: 60px;
             width: 75%;
             background: #e8e8e8;
+            overflow: auto;
         }
     }
 </style>

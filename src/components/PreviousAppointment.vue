@@ -9,8 +9,8 @@
                 </div>
             </div>
         </div>
-        <div v-else>
-            <h3>You haven't had any appointments yet.</h3>
+        <div v-else class="no-appointment">
+            <p>You haven't had any appointments yet.</p>
         </div>
     </div>
 </template>
@@ -60,5 +60,9 @@
         font-size: 15px;
         font-family: 'Muli', sans-serif;
         color: rgb(38, 9, 107);
+    }
+    .no-appointment{
+        font-family: 'Muli', sans-serif;
+        color: #757575;
     }
 </style>

@@ -82,6 +82,8 @@
     .doctor-container{
         border-radius: 3px;
         background: white;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     .doctor-header{
         text-align: left;

@@ -1,7 +1,10 @@
 <template>
     <div>
         <h1 class="title">My Appointments</h1>
-        <div v-if="appointments.length>0" class="grid-x">
+        <div v-if="cancelling">
+            <h3>Cancelling..</h3>
+        </div>
+        <div v-else-if="appointments.length>0" class="grid-x">
             <div class="small-6 medium-4 large-3 cell card" v-for="appointment in appointments">
                 <div class="card-header">
                     <p class="header-title">APPOINTMENT WITH</p>
@@ -9,7 +12,7 @@
                     <p>Date: {{appointment.date}}</p>
                 </div>
                 <div class="card-footer">
-                    <button class="button alert">Cancel Appointment</button>
+                    <button class="button alert" @click="cancelAppointment(appointment)">Cancel Appointment</button>
                 </div>
             </div>
         </div>
@@ -24,10 +27,24 @@
         computed: {
             appointments: function(){
                 return this.$store.getters.getCurrentAppointmentList;
+            },
+            cancelling: function(){
+                return this.$store.getters.getCancellingStatus;
+            }
+        },
+        watch:{
+            cancelling: function(val){
+                if(val == true){
+                    this.cancelFlag = true;
+                }
+                else if(this.cancelFlag){
+                    this.refreshList();
+                }
             }
         },
         data(){
             return {
+                cancelFlag: false
             }
         },
         beforeMount(){
@@ -39,6 +56,10 @@
                     googleid: this.$store.getters.getGoogleId
                 };
                 this.$store.dispatch("fetchMyAppointments", data);
+            },
+            cancelAppointment(appointment){
+                console.log(appointment);
+                this.$store.dispatch('cancelAppointment',appointment);
             }
         }
     }

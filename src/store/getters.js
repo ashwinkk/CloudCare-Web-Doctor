@@ -43,6 +43,9 @@ export default {
 	getBookingStatus(state) {
 		return state.booking.bookingStatus;
 	},
+	getCancellingStatus(state) {
+		return state.cancelBooking.cancelling;
+	},
 	//current appointments getters
 	getCurrentAppointmentList(state) {
 		return state.currentAppointments;

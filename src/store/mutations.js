@@ -18,16 +18,26 @@ export default {
 		console.log(data);
 		state.doctor.schedule = data;
 	},
+	setDepartment(state, data) {
+		state.booking.department = data;
+	},
+	setBookingDate(state, data) {
+		state.booking.date = data;
+	},
 	setBookingParameters(state, data) {
 		state.booking.doctor = data.doctor;
 		state.booking.date = data.date;
 		state.booking.department = data.department;
+	},
+	setBookingProgress(state) {
+		state.booking.bookingStatus = "booking";
 	},
 	setBookingStatus(state, data) {
 		console.log(data);
 		if (data.tokenno != undefined) {
 			state.booking.bookingStatus = "success";
 			state.booking.tokenno = data.tokenno;
+			state.booking.doctorName = data.doctorName;
 		} else state.booking.bookingStatus = "failed";
 	},
 	clearBookingData(state) {
@@ -36,7 +46,9 @@ export default {
 			googleid: "",
 			bookingStatus: "notbooked",
 			tokenno: "",
-			doctor: {}
+			department: "",
+			doctor: {},
+			doctorName: ""
 		};
 	},
 	updateCurrentAppointmentList(state, data) {
@@ -50,5 +62,13 @@ export default {
 	updatePreviousAppointments(state, data) {
 		console.log(data);
 		state.previousAppointments = data;
+	},
+	setCancellingStatus(state) {
+		state.cancelBooking.cancelling = true;
+	},
+	setCancelStatus(state, data) {
+		console.log(data);
+		state.cancelBooking.cancelling = false;
+		state.cancelBooking.cancelled = true;
 	}
 };
