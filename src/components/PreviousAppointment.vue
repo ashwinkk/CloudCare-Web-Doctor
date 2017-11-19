@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>Previous Appointments</h1>
-        <div v-if="appointments.length!=0">
-            <div v-for="appointment in appointments">
+        <div v-if="appointments.length!=0" class="grid-x">
+            <div v-for="appointment in appointments" class="small-12 medium-6 large-6 cell">
                 <h3>Doctor: {{appointment.doctorName}}</h3>
                 <p>Scheduled Date: {{appointment.date}}</p>
             </div>
