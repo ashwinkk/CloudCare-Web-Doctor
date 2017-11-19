@@ -42,6 +42,11 @@ export default new Router({
 			component: Dashboard,
 			children: [
 				{
+					path: "",
+					name: "IndexRoute",
+					redirect: "my-appointments"
+				},
+				{
 					path: "my-appointments",
 					name: "MyAppointments",
 					component: MyAppointments
