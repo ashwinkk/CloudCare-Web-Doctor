@@ -63,7 +63,7 @@
                         googleid: googleUser.w3.Eea
                     })
                 },_this = this;
-                fetch('http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/checkUserexists',options)
+                fetch('http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/api/checkUserexists',options)
                 .then(response=>{
                     _this.loader = true;
                     return response.json()
