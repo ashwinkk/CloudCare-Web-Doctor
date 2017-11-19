@@ -23,6 +23,9 @@
             bookingData: function(){
                 return this.$store.getters.getBookedData;
             }
+        },
+        beforeDestroy(){
+            this.$store.commit('clearBookingData');
         }
     }
 </script>

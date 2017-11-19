@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Schedule</h1>
+        <h1 class="title">Schedule</h1>
         <div v-if="!loader" class="grid-x grid-margin-x schedule-container">
             <div v-for="data in schedule" class="small-12 cell doctor-container">
                 <div class="doctor-header">

@@ -20,6 +20,15 @@
 </script>
 
 <style>
+    h1.title{
+        color: #7b7b7b;
+        font-family: 'Dosis', sans-serif;
+        margin-bottom: 60px;
+    }
+    h2{
+        color: #3d3258;
+        
+    }
     @media(min-width: 1300px){
         .container{
             display: flex;
@@ -31,7 +40,7 @@
         .content-area{
             padding-top: 60px;
             width: 75%;
-            background: #E0F2F1;
+            background: #e8e8e8;
         }
     }
 </style>

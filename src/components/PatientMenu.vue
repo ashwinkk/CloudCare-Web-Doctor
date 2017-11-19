@@ -7,16 +7,16 @@
             </div>
         </div>
         <ul>
-            <li :class="{'active-menu': activeMenu==1}" @click="activeMenu=1">
+            <li :class="{'active-menu': this.routePath=='book-appointment'}" @click="activeMenu=1">
                 <router-link to="/dashboard/book-appointment">Book an Appointment</router-link>
             </li>
-            <li :class="{'active-menu': activeMenu==2}" @click="activeMenu=2">
+            <li :class="{'active-menu': this.routePath=='my-appointments'}" @click="activeMenu=2">
                 <router-link to="/dashboard/my-appointments">My Appointments</router-link>
             </li>
-            <li :class="{'active-menu': activeMenu==3}" @click="activeMenu=3">
+            <li :class="{'active-menu': this.routePath=='schedule'}" @click="activeMenu=3">
                 <router-link to="/dashboard/schedule">Doctors' Schedule</router-link>
             </li>
-            <li :class="{'active-menu': activeMenu==4}" @click="activeMenu=4">
+            <li :class="{'active-menu': this.routePath=='previous-appointments'}" @click="activeMenu=4">
                 <router-link to="/dashboard/previous-appointments">Previous Appointments</router-link>
             </li>
         </ul>
@@ -25,6 +25,15 @@
 <script>
     export default {
         name: "patient-menu",
+        beforeCreate(){
+            console.log(this.$route.path);
+        },
+        computed: {
+            routePath() {
+                console.log(this.$route.path.split('/'));
+                return this.$route.path.split('/')[2];
+            }
+        },
         data(){
             return {
                 activeMenu: 2
@@ -36,7 +45,7 @@
     .menu-container{
         width: 100%;
         height: 100%;
-        background: #3F51B5;
+        background: #3d3258;
     }
     .menu-container>ul{
         list-style-type: none;

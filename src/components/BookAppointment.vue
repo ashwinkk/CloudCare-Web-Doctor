@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h1>Book Appointment</h1>
+            <h1 class="title">Book Appointment</h1>
         </div>
         <div class="grid-x grid-padding-x">
             <div class="small-2 cell"></div>
@@ -16,7 +16,7 @@
                 <input type="date" :min="today" :max="lastDate" v-model="selectedDateString" />
             </div>
         </div>
-        <div class="grid-x grid-padding-x">
+        <div class="grid-x grid-padding-x doctor-select-area">
             <div class="small-4 cell"></div>
             <div class="small-4 cell doctorselector" v-if="selectedDateString.length>0">
                 <div v-if="choosableDoctors.length>0">
@@ -163,5 +163,23 @@
     }
     .select-date{
         border-radius: 3px;
+    }
+    label{
+        color: #4c4c4c;
+        font-family: 'Dosis', sans-serif;
+        font-size: 18px;
+    }
+    p{
+        color: rgb(90, 90, 90);
+        font-family: 'Muli', sans-serif;
+    }
+    .doctor-select-area{
+        margin-top: 40px;
+    }
+    input, select{
+        margin: 0 !important;
+        outline: 0;
+        
+        color: #433a57;
     }
 </style>
