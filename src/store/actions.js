@@ -1,3 +1,4 @@
+const host = "http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com";
 export default {
 	register(context, userObject) {
 		var options = {
@@ -8,10 +9,7 @@ export default {
 			body: JSON.stringify(userObject)
 		};
 		console.log(userObject);
-		fetch(
-			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/patientDetails",
-			options
-		)
+		fetch(`${host}/api/patientDetails`, options)
 			.then(response => response.text())
 			.then(data => {
 				console.log(data);
@@ -28,10 +26,7 @@ export default {
 			body: JSON.stringify(data)
 		};
 		console.log(data);
-		fetch(
-			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/mobileVerification",
-			options
-		)
+		fetch(`${host}/api/mobileVerification"`, options)
 			.then(response => response.text)
 			.then(data => console.log(data))
 			.catch(err => console.log(err));
@@ -45,10 +40,7 @@ export default {
 			},
 			body: JSON.stringify(data)
 		};
-		fetch(
-			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/verify",
-			options
-		)
+		fetch(`${host}/api/verify`, options)
 			.then(response => response.json())
 			.then(data => {
 				console.log(data);
@@ -59,9 +51,7 @@ export default {
 			.catch(err => console.log(err));
 	},
 	fetchDoctorSchedule(context) {
-		fetch(
-			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/doctorDetails"
-		)
+		fetch(`${host}/api/doctorDetails`)
 			.then(response => response.json())
 			.then(data => {
 				console.log(data);
@@ -76,10 +66,7 @@ export default {
 			},
 			body: JSON.stringify(data)
 		};
-		fetch(
-			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/booking",
-			options
-		)
+		fetch(`${host}/api/booking`, options)
 			.then(response => response.json())
 			.then(data => {
 				context.commit("setBookingStatus", data);
@@ -94,10 +81,7 @@ export default {
 			},
 			body: JSON.stringify(data)
 		};
-		fetch(
-			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/currentAppointements",
-			options
-		)
+		fetch(`${host}/api/currentAppointements`, options)
 			.then(response => response.json())
 			.then(data => {
 				context.commit("updateCurrentAppointmentList", data);
@@ -112,10 +96,7 @@ export default {
 			},
 			body: JSON.stringify(data)
 		};
-		fetch(
-			"http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com/previousAppointements",
-			options
-		)
+		fetch(`${host}/api/previousAppointements`, options)
 			.then(response => response.json())
 			.then(data => {
 				context.commit("updatePreviousAppointments", data);
