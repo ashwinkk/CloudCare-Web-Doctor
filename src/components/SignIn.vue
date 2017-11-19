@@ -31,7 +31,7 @@
                 if(comepletedFetch && this.registered)
                     this.navigate('dashboard/my-appointments');
                 else if(comepletedFetch && !this.registered){
-                    this.setStorage(googleUser);
+                    // this.setStorage(this.googleUser);
                     this.navigate('signup');
                 }
             }
