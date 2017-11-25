@@ -1,9 +1,9 @@
 <template>
     <div class="menu-container">
         <div class="menu-header">
-            <img src="../assets/images/p+.png" />
+            <img src="../assets/images/cloudcareLogo.png" />
             <div>
-                <h2>Patient+</h2>
+                <h2>CloudCare</h2>
             </div>
         </div>
         <ul>
