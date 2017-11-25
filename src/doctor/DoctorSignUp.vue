@@ -26,14 +26,15 @@
             }
         },
         watch: {
-            isSignedIn: function(status){
+            isSignedUp: function(status){
+                console.log(status);
                 if(status == true)
                     this.$router.push('/doctor/chat-rooms');
             }
         },
         computed: {
-            isSignedIn: function(){
-                this.$store.getters.getSignUpCompleteStatus;
+            isSignedUp: function(){
+                return this.$store.getters.getSignUpCompleteStatus;
             }
         },
         methods: {

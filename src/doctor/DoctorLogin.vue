@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="splash-screen">
         <div>
-            <img class="logo" src="../assets/images/cloudcareLogo.png" />
+            <img class="logo" src="../assets/images/cloudcare.png" />
         </div>
         <google-sign-in @signedIn="getCredentials"></google-sign-in>
     </div>
@@ -17,12 +17,17 @@
         watch:{
             actionCompleted: function(comepletedFetch){
                 if(comepletedFetch && this.registered)
-                    this.navigate('doctor/chat-rooms');
+                    this.$router.push('doctor/chat-rooms');
                 else if(comepletedFetch && !this.registered){
-                    // this.setStorage(googleUser);
-                    console.log("signedIn");
-                    // this.navigate('doctor-signup');
+                    console.log("not verified");
+                    this.$router.push('doctor-signup');
                 }
+            }
+        },
+        data(){
+            return {
+                actionCompleted: false,
+                registered: false
             }
         },
         methods: {
@@ -39,7 +44,7 @@
                         googleid: googleUser.w3.Eea
                     })
                 },_this = this;
-                fetch('http://20.20.4.84:3000/checkDoctorexists',options)
+                fetch('http://20.20.4.84:3000/checkDoctorexists', options)
                 .then(response=>{
                     _this.loader = true;
                     return response.json()
@@ -66,5 +71,10 @@
 <style>
     .logo{
         width: 300px;
+    }
+    .splash-screen{
+        position: relative;
+        top: 40%;
+        transform: translateY(-50%);
     }
 </style>

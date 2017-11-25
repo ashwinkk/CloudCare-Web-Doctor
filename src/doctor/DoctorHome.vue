@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="patient-menu">
+        <div class="doctor-menu">
             <doctor-menu></doctor-menu>
         </div>
         <div class="content-area">
@@ -25,14 +25,13 @@
     }
     h2{
         color: #3d3258;
-        
     }
-    @media(min-width: 1300px){
+    @media(min-width: 1000px){
         .container{
             display: flex;
             height: 100%;
         }
-        .patient-menu{
+        .doctor-menu{
             width: 25%;
         }
         .content-area{

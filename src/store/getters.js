@@ -56,7 +56,7 @@ export default {
 	},
 	// Doctor App
 	getSignUpCompleteStatus(state) {
-		return state.doctor.signedUp;
+		return state.doctorSide.signedUp;
 	},
 	getDoctorEmail(state) {
 		return state.doctorSide.email;
