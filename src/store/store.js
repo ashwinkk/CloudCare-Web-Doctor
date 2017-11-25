@@ -36,6 +36,13 @@ const store = new Vuex.Store({
 		cancelBooking: {
 			cancelling: false,
 			cancelled: true
+		},
+		// Doctor App
+		doctorSide: {
+			email: localStorage.getItem("doctor-email"),
+			name: localStorage.getItem("doctor-name"),
+			googleId: localStorage.getItem("doctor-googleid"),
+			signedUp: false
 		}
 	},
 	getters,

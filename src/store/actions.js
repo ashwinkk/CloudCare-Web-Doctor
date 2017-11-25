@@ -1,4 +1,5 @@
-const host = "http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com";
+// const host = "http://ec2-13-58-90-106.us-east-2.compute.amazonaws.com";
+const host = "http://20.20.4.84:3000";
 export default {
 	register(context, userObject) {
 		var options = {
@@ -119,6 +120,24 @@ export default {
 			.then(data => {
 				console.log(data);
 				context.commit("setCancelStatus", true);
+			})
+			.catch(err => console.log(err));
+	},
+	// Doctor App
+
+	completeSignUp(context, userObject) {
+		var options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(userObject)
+		};
+		fetch(`${host}/doctorSignin`, options)
+			.then(response => response.text())
+			.then(data => {
+				console.log(data);
+				context.commit("setDoctorSignUp", userObject);
 			})
 			.catch(err => console.log(err));
 	}

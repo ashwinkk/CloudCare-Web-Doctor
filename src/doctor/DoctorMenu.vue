@@ -8,16 +8,16 @@
         </div>
         <ul>
             <li :class="{'active-menu': this.routePath=='chat-rooms'}" @click="activeMenu=1">
-                <router-link to="/doctor/home/chat-rooms">Chat Rooms</router-link>
+                <router-link to="/doctor/chat-rooms">Chat Rooms</router-link>
             </li>
             <li :class="{'active-menu': this.routePath=='request'}" @click="activeMenu=2">
-                <router-link to="/doctor/home/request">Request a Medical Record</router-link>
+                <router-link to="/doctor/request">Request a Medical Record</router-link>
             </li>
             <li :class="{'active-menu': this.routePath=='search'}" @click="activeMenu=3">
-                <router-link to="/doctor/home/search">Search Global Records</router-link>
+                <router-link to="/doctor/search">Search Global Records</router-link>
             </li>
             <li :class="{'active-menu': this.routePath=='view-record'}" @click="activeMenu=4">
-                <router-link to="/doctor/home/view-record">View Records</router-link>
+                <router-link to="/doctor/view-record">View Records</router-link>
             </li>
             <li @click="clearStorage"><a >Logout</a></li>
         </ul>

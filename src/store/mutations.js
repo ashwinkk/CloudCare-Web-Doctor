@@ -70,5 +70,14 @@ export default {
 		console.log(data);
 		state.cancelBooking.cancelling = false;
 		state.cancelBooking.cancelled = true;
+	},
+	// Doctor App
+	setDoctorSignUp(state, { name, email, googleId }) {
+		state.doctorSide = {
+			name,
+			email,
+			googleId: googleId,
+			signedUp: true
+		};
 	}
 };

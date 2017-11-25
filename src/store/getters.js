@@ -53,5 +53,9 @@ export default {
 	//previous appointment getters
 	getPreviousAppointments(state) {
 		return state.previousAppointments;
+	},
+	// Doctor App
+	getSignUpCompleteStatus(state) {
+		return state.doctor.signedUp;
 	}
 };

@@ -47,6 +47,7 @@
         created: function(){
             this.baseRef = this.db.ref();
             this.$bindAsArray('chatRooms', this.baseRef.child(`rooms/ashwinkk`));
+            console.log(this.$router.params);
         },
         data(){
             return {
