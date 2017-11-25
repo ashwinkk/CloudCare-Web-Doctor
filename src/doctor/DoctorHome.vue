@@ -37,6 +37,7 @@
         .content-area{
             padding-top: 60px;
             width: 75%;
+            height: 100vh;
             background: #e8e8e8;
             overflow: auto;
         }

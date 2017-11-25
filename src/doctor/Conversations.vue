@@ -1,9 +1,16 @@
 <template>
-    <div>
+    <div class="message-container">
+        <div class="add-doc">
+            <p>Add Doctor: </p>
+            <input type="text" v-model="newDoctor" />
+            <button class="button" @click="addDoctor">Add</button>
+        </div>
         <div class="message-area">
             <div class="default-message" v-for="message in messages" :class="{ me: sender == message.sender }">
-                <h3>{{message.text}}</h3>
-                <p>{{message.timestamp}}</p>
+                <div class="message-box">
+                    <h3>{{message.text}}</h3>
+                    <p>{{message.timestamp}}</p>
+                </div>
             </div>
         </div>
         <div class="input-area">
@@ -31,11 +38,12 @@
         data(){
             return {
                 typedMessage: "",
-                sender: ""
+                sender: "",
+                newDoctor: ""
             }
         },
         created(){
-            this.sender = localStorage.getItem('user-googleid');
+            this.sender = localStorage.getItem('dpctor-email');
         },
         methods: {
             fetchMessages(){
@@ -54,6 +62,11 @@
                 }
                 this.$firebaseRefs.messages.push(messageToBeSent);
                 this.typedMessage = "";
+            },
+            addDoctor(){
+                console.log(this.newDoctor);
+                this.database.child(`rooms/${this.newDoctor.split('@')[0]}`).push({name:this.roomName});
+                this.newDoctor = "";
             }
         }
     }
@@ -61,12 +74,50 @@
 <style>
     .input-area{
         display: flex;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     }
     .default-message{
         width: 100%;
-        text-align: left;
+        display: flex;
+        justify-content: left;
     }
     .me{
+        justify-content: right;
+    }
+    .message-container{
+        height: 100%;
+        position: relative;
+    }
+    .add-doc{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .add-doc input{
+        width: 70%;
+    }
+    .add-doc p{
+        align-self: center;
+    }
+    .message-area {
+        height: calc(100% - 120px);
+    }
+    .message-box{
+        display: block;
+        background: gray;
+        padding-right: 30px;
+        padding-top: 10px;
+        padding-left: 10px;
+        border-radius: 10px;
+        text-align: left;
+    }
+    .me .message-box{
+        padding-left: 30px;
+        padding-top: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
         text-align: right;
     }
 </style>
