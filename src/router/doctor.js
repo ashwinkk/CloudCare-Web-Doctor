@@ -30,7 +30,7 @@ const doctor = [
 				component: ChatRooms
 			},
 			{
-				path: "search",
+				path: "request",
 				name: "Request",
 				component: RequestRecord
 			}

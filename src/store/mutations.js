@@ -72,11 +72,12 @@ export default {
 		state.cancelBooking.cancelled = true;
 	},
 	// Doctor App
-	setDoctorSignUp(state, { name, email, googleId }) {
+	setDoctorSignUp(state, data) {
+		console.log("writing to store");
 		state.doctorSide = {
-			name,
-			email,
-			googleId: googleId,
+			name: data.name,
+			email: data.email,
+			googleId: data.googleId,
 			signedUp: true
 		};
 	}

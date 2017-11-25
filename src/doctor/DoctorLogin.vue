@@ -53,6 +53,8 @@
                 .catch(err=>console.log(err));
             },
             setStorage(googleUser){
+                console.log("setting user");
+                console.log(googleUser);
                 localStorage.setItem('doctor-name',googleUser.w3.ig);
                 localStorage.setItem('doctor-dp',googleUser.w3.Paa);
                 localStorage.setItem('doctor-email',googleUser.w3.U3);

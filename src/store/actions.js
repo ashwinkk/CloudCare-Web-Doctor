@@ -140,5 +140,21 @@ export default {
 				context.commit("setDoctorSignUp", userObject);
 			})
 			.catch(err => console.log(err));
+	},
+	requestRecord(context, data) {
+		var options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		};
+		fetch(`${host}/medData`, options)
+			.then(response => response.json())
+			.then(data => {
+				console.log(data);
+				// context.commit("", userObject);
+			})
+			.catch(err => console.log(err));
 	}
 };
