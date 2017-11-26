@@ -43,6 +43,9 @@ const store = new Vuex.Store({
 			name: localStorage.getItem("doctor-name"),
 			googleId: localStorage.getItem("doctor-googleid"),
 			signedUp: false
+		},
+		search: {
+			results: []
 		}
 	},
 	getters,

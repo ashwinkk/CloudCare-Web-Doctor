@@ -156,5 +156,21 @@ export default {
 				// context.commit("", userObject);
 			})
 			.catch(err => console.log(err));
+	},
+	searchSymptoms(context, data) {
+		var options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		};
+		fetch(`${host}/search`, options)
+			.then(response => response.json())
+			.then(data => {
+				console.log(data);
+				context.commit("setSearchResults", data);
+			})
+			.catch(err => console.log(err));
 	}
 };

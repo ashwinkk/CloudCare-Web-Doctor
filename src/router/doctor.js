@@ -1,8 +1,10 @@
 import DoctorHome from "../doctor/DoctorHome";
 import ChatRooms from "../doctor/ChatRooms";
-import RequestRecord from "../doctor/RequestRecord.vue";
-import DoctorLogin from "../doctor/DoctorLogin.vue";
-import DoctorSignUp from "../doctor/DoctorSignUp.vue";
+import RequestRecord from "../doctor/RequestRecord";
+import DoctorLogin from "../doctor/DoctorLogin";
+import DoctorSignUp from "../doctor/DoctorSignUp";
+import SubmitDiagnosis from "../doctor/SubmitDiagnosis";
+import Search from "../doctor/Search";
 
 const doctor = [
 	{
@@ -33,6 +35,16 @@ const doctor = [
 				path: "request",
 				name: "Request",
 				component: RequestRecord
+			},
+			{
+				path: "submit-diagnosis",
+				name: "Submit",
+				component: SubmitDiagnosis
+			},
+			{
+				path: "search",
+				name: "Search",
+				component: Search
 			}
 		]
 	}

@@ -80,5 +80,8 @@ export default {
 			googleId: data.googleId,
 			signedUp: true
 		};
+	},
+	setSearchResults(state, data) {
+		state.search.results = data;
 	}
 };

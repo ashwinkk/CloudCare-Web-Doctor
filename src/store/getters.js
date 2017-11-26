@@ -63,5 +63,8 @@ export default {
 	},
 	getDoctorName(state) {
 		return state.doctorSide.name;
+	},
+	getSearchResults(state) {
+		return state.search.results;
 	}
 };

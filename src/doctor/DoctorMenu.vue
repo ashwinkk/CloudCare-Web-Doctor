@@ -16,8 +16,8 @@
             <li :class="{'active-menu': this.routePath=='search'}" @click="activeMenu=3">
                 <router-link to="/doctor/search">Search Global Records</router-link>
             </li>
-            <li :class="{'active-menu': this.routePath=='view-record'}" @click="activeMenu=4">
-                <router-link to="/doctor/view-record">View Records</router-link>
+            <li :class="{'active-menu': this.routePath=='submit-diagnosis'}" @click="activeMenu=4">
+                <router-link to="/doctor/submit-diagnosis">Submit Diagnosis</router-link>
             </li>
             <li @click="clearStorage"><a >Logout</a></li>
         </ul>
