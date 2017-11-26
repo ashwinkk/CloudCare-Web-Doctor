@@ -10,12 +10,15 @@
                 <button @click="requestRecord" class="button care-stack-button">Request</button>
             </div>
         </div>
-        <div v-else-if="recordLink.url!=undefined">
+        <div v-else-if="recordLink.url">
             <div>
                 <a target="_blank" class="button care-hack-button" :href="`${host}${recordLink.url}?email=${doctorMail}`">View Record</a>
             </div>
         </div>
-        {{recordLink}}
+        <div v-else-if="errorVal.url==false">
+            <p>User has denied permission to access</p>
+        </div>
+        <!--{{recordLink}}-->
     </div>
 </template>
 <script>
@@ -32,11 +35,13 @@
             }
         },
         firebase: {
-            recordLink: null
+            recordLink: null,
+            errorVal: null
         },
         created(){
             this.baseRef = this.db.ref();
             this.$bindAsObject('recordLink', this.baseRef.child(`links/${this.doctorMail.split('@')[0]}`));
+            this.$bindAsObject('errorVal', this.baseRef.child(`error/${this.doctorMail.split('@')[0]}`));
         },
         data(){
             return {

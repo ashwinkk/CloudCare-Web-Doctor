@@ -29,6 +29,9 @@
                         {{symptom}}
                     </li>
                 </ul>
+                <div>
+                    <button class="button care-stack-button">Submit</button>
+                </div>
             </div>
         </div>
     </div>

@@ -7,10 +7,10 @@
         </div>
         <div v-if="displayResults">
             <div v-for="result in searchResults" class="result">
-                <h3>Symptoms: {{result.Symptom}}</h3>
-                <p>Diagnosis: {{result.Diagnosis}}</p>
-                <p>Consulting Doctor: {{result.Name}}</p>
-                <button class="button care-stack-button" @click="contactDoctor(result.Email)">Contact</button>
+                <h3>Consulting Doctor: {{result.Name}}</h3>
+                <p>Location: {{result.Address}}</h3>
+                <p>Diagnosis: {{result.Diagonosis}}</p>
+                <button class="button care-stack-button" @click="contactDoctor(result.email)">Contact</button>
             </div>
         </div>
     </div>
@@ -62,5 +62,11 @@
         padding-left: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
+    }
+    .result>h3{
+        font-family: 'Dosis', sans-serif;
+    }
+    .result>p{
+        font-family: 'Muli', sans-serif;
     }
 </style>

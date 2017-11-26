@@ -40,7 +40,8 @@
             return {
                 typedMessage: "",
                 sender: "",
-                newDoctor: ""
+                newDoctor: "",
+                months: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
             }
         },
         created(){
@@ -60,7 +61,7 @@
                 var messageToBeSent = {
                     text: this.typedMessage,
                     sender: this.sender.split('@')[0],
-                    timestamp: `${date.getDate()}/${date.getMonth()}`
+                    timestamp: `${date.getDate()}, ${this.months[date.getMonth()]}`
                 }
                 this.$firebaseRefs.messages.push(messageToBeSent);
                 this.typedMessage = "";

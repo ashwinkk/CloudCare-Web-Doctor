@@ -3,7 +3,7 @@
         <h1 class="title">Chat Rooms</h1>
         <div class="chat-box">
             <div class="rooms-collection">
-                <div class="chat-room" v-for="room in chatRooms" @click="selectChat(room.name)">
+                <div class="chat-room" v-for="room in chatRooms" @click="selectChat(room.name)" :class="{selected: room.name==roomName}">
                     <h3>{{room.name}}</h3>
                     <p></p>
                 </div>
@@ -123,6 +123,9 @@
     .add-container{
         margin-top: 5px;
         margin-bottom: 5px;
+    }
+    .selected{
+        background: white;
     }
     .chat-room{
         padding: 5px;
