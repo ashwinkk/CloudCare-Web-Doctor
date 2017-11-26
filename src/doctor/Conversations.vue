@@ -6,8 +6,9 @@
             <button class="button" @click="addDoctor">Add</button>
         </div>
         <div class="message-area">
-            <div class="default-message" v-for="message in messages" :class="{ me: sender == message.sender }">
+            <div class="default-message" v-for="message in messages" :class="{ me: sender.split('@')[0] == message.sender }">
                 <div class="message-box">
+                    <h6>{{message.sender}}:</h6>
                     <h3>{{message.text}}</h3>
                     <p>{{message.timestamp}}</p>
                 </div>
@@ -43,7 +44,8 @@
             }
         },
         created(){
-            this.sender = localStorage.getItem('dpctor-email');
+            this.sender = localStorage.getItem('doctor-email');
+            this.fetchMessages();
         },
         methods: {
             fetchMessages(){
@@ -57,7 +59,7 @@
                 var date = new Date();
                 var messageToBeSent = {
                     text: this.typedMessage,
-                    sender: this.sender,
+                    sender: this.sender.split('@')[0],
                     timestamp: `${date.getDate()}/${date.getMonth()}`
                 }
                 this.$firebaseRefs.messages.push(messageToBeSent);
@@ -80,11 +82,6 @@
     }
     .default-message{
         width: 100%;
-        display: flex;
-        justify-content: left;
-    }
-    .me{
-        justify-content: right;
     }
     .message-container{
         height: 100%;
@@ -103,15 +100,19 @@
     }
     .message-area {
         height: calc(100% - 120px);
+        overflow-y: auto;
     }
     .message-box{
+        margin: 10px;
+        width: fit-content;
         display: block;
-        background: gray;
+        background: #c3c3c3;
         padding-right: 30px;
         padding-top: 10px;
         padding-left: 10px;
         border-radius: 10px;
-        text-align: left;
+        border-bottom-left-radius: 0px;
+        margin-right: auto;
     }
     .me .message-box{
         padding-left: 30px;
@@ -119,5 +120,9 @@
         padding-right: 10px;
         border-radius: 10px;
         text-align: right;
+        border-radius: 10px;
+        border-bottom-right-radius: 0px;
+        margin-left: auto;
+        margin-right: 0;
     }
 </style>

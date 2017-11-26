@@ -9,11 +9,12 @@
                 </div>
                 <div class="add-container"><button class="button care-stack-button" @click="showModal">New Chat</button></div>
             </div>
-            <div class="conversations">
+            <div class="conversations" v-if="roomName">
                 <div class="messages">
                     <conversations :database="baseRef" :roomName="roomName"></conversations>
                 </div>
             </div>
+            <div v-else><h1 class="title">No Chat to Display</h1></div>
         </div>
         <div class="new-chat-model" :class="{ visible: isVisible }">
             <input v-model="chatName" placeholder="Chat Name" />
@@ -25,27 +26,28 @@
 </template>
 
 <script>
-
-    import Firebase from "firebase";
+    import fapp from "../firebase";
     import Conversations from "./Conversations";
 
-    var config = {
-        apiKey: "AIzaSyBpdWt_k8iCOafpvjtuDNWEpkZlCbujxeQ",
-        authDomain: "carestack-771d7.firebaseapp.com",
-        databaseURL: "https://carestack-771d7.firebaseio.com",
-        projectId: "carestack-771d7",
-        storageBucket: "carestack-771d7.appspot.com",
-        messagingSenderId: "403579118721"
-    };
 
-    var fapp = Firebase.initializeApp(config);
     export default {
         name: "chat-rooms",
         components: {
             conversations: Conversations
         },
+        // watch:{
+        //     roomName: function(newVal){
+        //         if(newVal!=null)
+        //             this.$router.push(`/doctor/chat-rooms/${roomName}`);
+        //     }
+        // },
         firebase: {
             chatRooms: [],
+        },
+        computed: {
+            roomName: function(){
+                return this.$route.params.id;
+            }
         },
         created: function(){
             this.selfEmail = localStorage.getItem('doctor-email');
@@ -55,7 +57,6 @@
         },
         data(){
             return {
-                roomName: "",
                 checkMessage: {},
                 db : fapp.database(),
                 baseRef: null,
@@ -67,14 +68,14 @@
         },
         methods: {
             selectChat(roomName){
-                this.roomName = roomName;
+                // this.roomName = roomName;
+                this.$router.push(`/doctor/chat-rooms/${roomName}`);
             },
             showModal(){
                 this.isVisible = true;
             },
             createChat(){
                 console.log("created");
-
                 this.baseRef.child(`rooms/${this.selfEmail.split('@')[0]}`).push({name: this.chatName});
                 this.baseRef.child(`rooms/${this.newChatEmail.split('@')[0]}`).push({name: this.chatName});
                 this.chatName = "";
@@ -88,7 +89,7 @@
     }
 
 </script>
-<style>
+<style scoped>
     .new-chat-model{
         position: fixed;
         z-index: 99;
